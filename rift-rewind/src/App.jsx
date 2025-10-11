@@ -16,14 +16,3 @@ export default function App() {
     </Canvas>
   )
 }
-
-// return (
-//   <Canvas camera={{ position: [0, 0, 5], fov: 90 }}>
-//     <color attach="background" args={['#101020']} />
-//     <Lines dash={dash} count={count} radius={radius} colors={[[10, 0.5, 2], [1, 2, 10], '#A2CCB6', '#FCEEB5', '#EE786E', '#e0feff']} />
-//     <Rig />
-//     <EffectComposer>
-//       <Bloom mipmapBlur luminanceThreshold={1} radius={0.6} />
-//     </EffectComposer>
-//   </Canvas>
-// )
