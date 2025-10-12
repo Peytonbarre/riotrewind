@@ -3,23 +3,27 @@ import { Canvas, extend, useFrame } from '@react-three/fiber'
 import { Vector3 } from 'three/src/Three.Core.js'
 import { MeshLineGeometry, MeshLineMaterial} from 'meshline'
 import { easing } from 'maath'
+import Navbar from './components/Navbar'
 
 extend({MeshLineGeometry, MeshLineMaterial})
 
 export default function App() {
   return (
-    <Canvas camera={{position: [0, 0, 5], fov:90}}>
-      <color attach="background" args={['#101020']}/>
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
-      <CameraRig/>
-      <mesh>
-        <boxGeometry args={[2, 2, 2]} />
-          {['red', 'blue', 'green', 'yellow', 'purple', 'orange'].map((color, i) => (
-            <meshStandardMaterial key={i} attach={`material-${i}`} color={color} />
-          ))}
-      </mesh>
-    </Canvas>
+    <>
+      <Navbar/>
+      <Canvas camera={{position: [0, 0, 5], fov:90}}>
+        <color attach="background" args={['#101020']}/>
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[10, 10, 5]} intensity={1} />
+        <CameraRig/>
+        <mesh>
+          <boxGeometry args={[2, 2, 2]} />
+            {['red', 'blue', 'green', 'yellow', 'purple', 'orange'].map((color, i) => (
+              <meshStandardMaterial key={i} attach={`material-${i}`} color={color} />
+            ))}
+        </mesh>
+      </Canvas>
+    </>
   )
 }
 

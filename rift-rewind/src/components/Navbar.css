@@ -1,0 +1,18 @@
+.navbar {
+    height: 8%;
+    top: 0;
+    background: red;
+    display: flex;
+}
+
+.navbar h2 {
+    margin: 0;
+}
+
+.midnav {
+    left: 50%;
+}
+
+.rightnav {
+    display: flex;
+}
