@@ -23,9 +23,10 @@ export default function App() {
   )
 }
 
-function CameraRig({radius=20}){
+function CameraRig({radius=10}){
   useFrame((state, dt) => {
-    // easing.damp3(state.camera.position, [Math.sin(state.pointer.x) * radius, Math.atan(state.pointer.y) * radius, Math.cos(state.pointer.x) * radius], 0.25, dt)
-    easing.damp3(state.camera.position, [Math.cos(state.pointer.y) * Math.sin(state.pointer.x) * radius,Math.sin(state.pointer.y) * Math.sin(state.pointer.x) * radius, Math.cos(state.pointer.x) * radius], 0.25, dt)
+    easing.damp3(state.camera.position, [Math.sin(state.pointer.x) * radius, Math.atan(state.pointer.y) * radius, Math.cos(state.pointer.x) * radius], 0.25, dt)
+    //easing.damp3(state.camera.position, [state.pointer.x * 0.5, state.pointer.y * 0.5, 5], 0.25, dt)
+    state.camera.lookAt(0, 0, 0)
   })
 }
