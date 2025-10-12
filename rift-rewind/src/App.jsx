@@ -1,9 +1,11 @@
 import './App.css'
+import { useState, useRef } from 'react'
 import { Canvas, extend, useFrame } from '@react-three/fiber'
-import { Vector3 } from 'three/src/Three.Core.js'
 import { MeshLineGeometry, MeshLineMaterial} from 'meshline'
 import { easing } from 'maath'
+import { OrbitControls } from '@react-three/drei'
 import Navbar from './components/Navbar'
+import * as THREE from 'three'
 
 extend({MeshLineGeometry, MeshLineMaterial})
 
@@ -15,6 +17,7 @@ export default function App() {
         <color attach="background" args={['#101020']}/>
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
+        <OrbitControls enableZoom={true} enableRotate={true} />
         <CameraRig/>
         <mesh>
           <boxGeometry args={[2, 2, 2]} />
@@ -27,10 +30,32 @@ export default function App() {
   )
 }
 
-function CameraRig({radius=10}){
+function CameraRig({radius=5}){
+  const [isDragging, setIsDragging] = useState(false)
+  const basePosition = useRef(new THREE.Vector3(0,0,5))
+  const handleDragEnd = (e) => {
+    basePosition.current.copy(e.target.object.position)
+    setIsDragging(false)
+  }
   useFrame((state, dt) => {
-    easing.damp3(state.camera.position, [Math.sin(state.pointer.x) * radius, Math.atan(state.pointer.y) * radius, Math.cos(state.pointer.x) * radius], 0.25, dt)
-    //easing.damp3(state.camera.position, [state.pointer.x * 0.5, state.pointer.y * 0.5, 5], 0.25, dt)
-    state.camera.lookAt(0, 0, 0)
+    if(!isDragging){
+      const offset = new THREE.Vector3(
+        Math.sin(state.pointer.x * 0.5) * radius,
+        Math.atan(state.pointer.y * 0.5) * radius,
+        0
+      )
+      const targetPos = basePosition.current.clone().add(offset)
+      easing.damp3(state.camera.position, targetPos.toArray(), 0.3, dt)
+      state.camera.lookAt(0, 0, 0)
+    }
   })
+  return (
+    <OrbitControls 
+      onStart={() => setIsDragging(true)}
+      onEnd={handleDragEnd}
+      zoomSpeed={0.3}
+      minDistance={3}
+      maxDistance={15}
+    />
+  )
 }
