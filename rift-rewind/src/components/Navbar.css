@@ -1,7 +1,7 @@
 .navbar {
     height: 8%;
     top: 0;
-    background: red;
+    background: #242424;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,4 +24,11 @@
 
 .rightnav {
     display: flex;
+    margin-right: 1rem;
+}
+
+.rightnav h2 {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 15px;
 }
