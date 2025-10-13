@@ -20,12 +20,13 @@ export default function App() {
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <OrbitControls enableZoom={true} enableRotate={true} />
         <CameraRig/>
-        <mesh>
+        <AnimatedHelix/>
+        {/* <mesh>
           <boxGeometry args={[2, 2, 2]} />
             {['red', 'blue', 'green', 'yellow', 'purple', 'orange'].map((color, i) => (
               <meshStandardMaterial key={i} attach={`material-${i}`} color={color} />
             ))}
-        </mesh>
+        </mesh> */}
       </Canvas>
     </>
   )
@@ -58,5 +59,18 @@ function CameraRig({radius=5}){
       minDistance={3}
       maxDistance={15}
     />
+  )
+}
+
+function AnimatedHelix(){
+  const [phase, setPhase] = useState(0)
+  useFrame((state, delta) => {
+    setPhase((prev) => prev + delta * 0.5)
+  })
+  return(
+    <>
+      <Helix n={150} phase={phase} radius={1.5} height={8} turns={4}/>     
+      <Helix n={150} phase={phase + Math.PI} radius={1.2} height={8} turns={4}/>     
+    </>
   )
 }
