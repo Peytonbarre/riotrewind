@@ -6,6 +6,7 @@ import { easing } from 'maath'
 import { OrbitControls } from '@react-three/drei'
 import Navbar from './components/Navbar'
 import * as THREE from 'three'
+import Helix from './components/helix.jsx'
 
 extend({MeshLineGeometry, MeshLineMaterial})
 
