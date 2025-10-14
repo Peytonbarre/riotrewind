@@ -6,7 +6,7 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
 extend({MeshLineGeometry, MeshLineMaterial})
 
-export default function Helix({n=100 ,phase=0, radius=1, height=5, turns=3}) {
+export default function Helix({n=100 ,phase=0, radius=1, height=5, turns=3, color="#00ffff"}) {
     //return Array.from({ length: n }, (value, index) => [new Vector3(Math.cos(5*index/n-phase),Math.cos(5*index/n-phase) , 5*index/n)]);
     const points = useMemo(() => {
         const pts = []
@@ -23,7 +23,7 @@ export default function Helix({n=100 ,phase=0, radius=1, height=5, turns=3}) {
         <mesh>
             <meshLineGeometry points={points}/>
             <meshLineMaterial
-                color="#00ffff"
+                color={color}
                 lineWidth={0.1}
                 transparent
                 opacity={0.8}
