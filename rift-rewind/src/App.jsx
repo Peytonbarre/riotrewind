@@ -69,8 +69,8 @@ function AnimatedHelix(){
   })
   return(
     <>
-      <Helix n={150} phase={phase} radius={1.5} height={8} turns={4} color="#00ffff"/>     
-      <Helix n={150} phase={phase + Math.PI} radius={1.5} height={8} turns={4} color="#ffff00"/>     
+      <Helix n={150} phase={phase} radius={1.5} height={1} turns={4} color="#00ffff"/>     
+      <Helix n={150} phase={phase + Math.PI/2} radius={1.5} height={1} turns={4} color="#ffff00"/>     
     </>
   )
 }
