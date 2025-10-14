@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react'
+import { useState, FormEvent, ChangeEvent } from 'react'
 import { useRouter } from 'next/navigation';
 import './Navbar.css'
 import React from 'react';
@@ -9,7 +9,7 @@ export default function Navbar() {
     const [summonerSearch, setSummonerSearch] = useState('')
     const router = useRouter();
 
-    const handleSearchInputChange = (e) => {
+    const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setSummonerSearch(e.target.value);
     };
 
