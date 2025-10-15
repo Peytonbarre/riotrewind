@@ -5,7 +5,12 @@ html, body, #root {
     height: 100%;
     overflow: hidden;
   }
-  
+
   canvas {
     display: block;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 60px);
   }
